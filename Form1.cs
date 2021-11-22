@@ -66,6 +66,8 @@ namespace AllTours
         {
             generation = new Simulation();
             generation.label = label1;
+            //DBConnector db = new DBConnector();
+            //db.Connect();
         }
 
     }

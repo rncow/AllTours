@@ -10,10 +10,10 @@ namespace AllTours
 {
     public class Simulation
     {
-        List<Client> clients = new List<Client>();
+        Client tempClient = new Client();
         bool _isActive;
         public Label label;
-
+        int i = 0;
 
         public void Start()
         {
@@ -35,16 +35,16 @@ namespace AllTours
             while (_isActive)
             {
                 //появляется клиент
-                clients.Add(Generator.GenerateClient());
+                tempClient = Generator.GenerateClient();
                 //создается заказ
-                Generator.GenerateOrder(clients.Last());
+                Generator.GenerateOrder(tempClient);
                 //некая логика оплаты
-                clients.Last().order.isOrderPaid = true;
+                tempClient.order.isOrderPaid = true;
                 //если заказ оплачен, то билет выдан
-                if (clients.Last().order.isOrderPaid) clients.Last().ticket = Generator.GenerateTicket();
+                if (tempClient.order.isOrderPaid) tempClient.ticket = Generator.GenerateTicket();
 
-                label.Invoke(new Action(() => label.Text = "asd"));
-
+                label.Invoke(new Action(() => label.Text = "temptest" + i));
+                i++;
                 Thread.Sleep(2000);
             }
         }
