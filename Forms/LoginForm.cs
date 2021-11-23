@@ -12,6 +12,7 @@ namespace AllTours
 {
     public partial class LoginForm : Form
     {
+        DBConnector db = new DBConnector();
         public LoginForm()
         {
             InitializeComponent();
@@ -19,7 +20,18 @@ namespace AllTours
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
+            if (db.Login(textBox1.Text, textBox2.Text))
+            {
+                this.Hide();
+                Form1 form = new Form1();
+                form.ShowDialog();
+                this.Close();
+            }
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+        }
+
     }
 }
