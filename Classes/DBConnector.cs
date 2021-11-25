@@ -128,7 +128,20 @@ namespace AllTours
             conn.Open();
             var command = new SqlCommand($"Select password FROM Accounts Where username = '{username}'", conn);
             /* Fetch the stored value */
-            string savedPasswordHash = command.ExecuteScalar().ToString();
+            string savedPasswordHash;
+            using(SqlDataReader reader = command.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show("Incorrect username or password", "Authentication has failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else
+                {
+                    reader.Read();
+                    savedPasswordHash = reader.GetString(0);
+                }
+            }
             /* Extract the bytes */
             byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
             /* Get the salt */

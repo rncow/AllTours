@@ -45,7 +45,7 @@ namespace AllTours
 
                 label.Invoke(new Action(() => label.Text = "temptest" + i));
                 i++;
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
         }
 
