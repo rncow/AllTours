@@ -25,10 +25,10 @@ namespace AllTours
         {
             Random rnd = new Random();
             string temp = null;
-            for (int i = 0; i < 30; i++) temp += rnd.Next(0, 9);
+            for (int i = 0; i < 20; i++) temp += rnd.Next(0, 9);
             return new Ticket()
             {
-                id = "000" + temp,
+                id = temp,
                 ticketType = ((TicketType)rnd.Next(Enum.GetNames(typeof(TicketType)).Length)),
             };
         }
