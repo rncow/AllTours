@@ -13,8 +13,7 @@ namespace AllTours
         public string phone;
         public string email;
 
-        public Order order;
-        public Ticket ticket;
+        
     }
 
     public class Order
@@ -22,6 +21,7 @@ namespace AllTours
         public DateTime orderTime;
         public Client client;
         public Tour tour;
+        public Ticket ticket;
         public int price;
         public bool isOrderPaid;
         

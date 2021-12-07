@@ -14,7 +14,7 @@ namespace AllTours
         SqlConnection connection;
         public void Connect()
         {
-            connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Desktop\\ИСПРО\\AllTours\\MegaDatabase.mdf;Integrated Security=True");
+            connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Desktop\\ИСПРО\\AllTours\\DBs\\MegaDatabase.mdf;Integrated Security=True");
             connection.Open();
             //var commannd = new SqlCommand("INSERT INTO Clients (Name) VALUES ('Sam');", connection);
             //commannd.ExecuteNonQuery();

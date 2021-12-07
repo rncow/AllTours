@@ -11,6 +11,8 @@ namespace AllTours
     public class Simulation
     {
         Client tempClient = new Client();
+        Order tempOrder = new Order();
+        DBConnector db = new DBConnector();
         bool _isActive;
         public Label label;
         int i = 0;
@@ -37,11 +39,11 @@ namespace AllTours
                 //появляется клиент
                 tempClient = Generator.GenerateClient();
                 //создается заказ
-                Generator.GenerateOrder(tempClient);
+                tempOrder = Generator.GenerateOrder(tempClient);
                 //некая логика оплаты
-                tempClient.order.isOrderPaid = true;
+                tempOrder.isOrderPaid = true;
                 //если заказ оплачен, то билет выдан
-                if (tempClient.order.isOrderPaid) tempClient.ticket = Generator.GenerateTicket();
+                if (tempOrder.isOrderPaid) tempOrder.ticket = Generator.GenerateTicket();
 
                 label.Invoke(new Action(() => label.Text = "temptest" + i));
                 i++;

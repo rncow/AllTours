@@ -42,7 +42,6 @@ namespace AllTours
                 client = client,
                 tour = ListTours.listTours[temp]
             };
-            client.order = order;
             return order;
         }
     }
