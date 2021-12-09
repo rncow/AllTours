@@ -32,4 +32,9 @@ namespace AllTours
         public string id;
         public TicketType ticketType;
     }
+
+    public static class Counter
+    {
+        public static int id;
+    }
 }

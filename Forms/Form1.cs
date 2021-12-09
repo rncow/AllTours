@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AllTours.Properties;
 
 namespace AllTours
 {
@@ -52,6 +53,7 @@ namespace AllTours
         //}
         DBConnector db = new DBConnector();
         Simulation generation;
+        
         private void Button1_Click(object sender, EventArgs e)
         {
             generation.Start();
@@ -64,14 +66,10 @@ namespace AllTours
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Counter.id = int.Parse(Settings.Default["ID"].ToString());
             generation = new Simulation();
             generation.label = label1;
-            db.Connect();
-            //DBConnector db = new DBConnector();
-            //db.Connect();
-            label2.Text = "В настоящее время программа находится в разработке и может содержать ошибки.\n" +
-                            "Единственный разработчик приносит извенения за доставленные неудобства.";
-            label2.AutoSize = true;
+            label1.Text = "" + Counter.id;
         }
 
     }

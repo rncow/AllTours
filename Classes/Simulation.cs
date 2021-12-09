@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using AllTours.Properties;
 
 namespace AllTours
 {
@@ -22,6 +23,7 @@ namespace AllTours
             if (!_isActive)
             {
                 _isActive = true;
+                Counter.id = int.Parse(Settings.Default["ID"].ToString()); // загрузка счетчика
                 Task.Run(() => MainGeneration());
             }
         }
@@ -48,6 +50,9 @@ namespace AllTours
                 label.Invoke(new Action(() => label.Text = "temptest" + i));
                 i++;
                 Thread.Sleep(1000);
+                //сохранение значения счётчика
+                Settings.Default["ID"] = Counter.id;
+                Settings.Default.Save();
             }
         }
 
