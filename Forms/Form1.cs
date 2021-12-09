@@ -67,11 +67,12 @@ namespace AllTours
             generation = new Simulation();
             generation.label = label1;
             db.Connect();
+            //DBConnector db = new DBConnector();
+            //db.Connect();
+            label2.Text = "В настоящее время программа находится в разработке и может содержать ошибки.\n" +
+                            "Единственный разработчик приносит извенения за доставленные неудобства.";
+            label2.AutoSize = true;
         }
 
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            db.Insert("INSERT INTO Clients(Name) VALUES('Sam');");
-        }
     }
 }
