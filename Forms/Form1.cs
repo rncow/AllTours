@@ -70,6 +70,8 @@ namespace AllTours
             generation = new Simulation();
             generation.label = label1;
             label1.Text = "" + Counter.id;
+            //db.Connect();
+            //db.Insert($"INSERT INTO Clients VALUES ({Counter.id}, N'Абобий', '+79999999999', 'asd@asd.com');");
         }
 
     }
