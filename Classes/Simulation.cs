@@ -53,10 +53,7 @@ namespace AllTours
                 //если заказ оплачен, то билет выдан
                 if (tempOrder.isOrderPaid) tempOrder.ticket = Generator.GenerateTicket();
 
-                db.Insert($"INSERT INTO Clients VALUES ({Counter.id}, N'{tempClient.name}', '{tempClient.phone}', '{tempClient.email}');");
-                db.Insert($"INSERT INTO Tickets VALUES ({Counter.id}, '{tempOrder.ticket.id}', N'{tempOrder.ticket.ticketType}');");
-                db.Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{tempOrder.orderTime}', N'{tempOrder.tour.name}', 1, 1);");
-
+                db.AddInfoIntoDatabase(tempOrder);
                 label.Invoke(new Action(() => label.Text = "temptest" + i));
                 i++;
                 Counter.id++;

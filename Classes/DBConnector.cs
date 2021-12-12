@@ -29,11 +29,6 @@ namespace AllTours
             var command = new SqlCommand(sqlCommand, connection);
             command.ExecuteNonQuery();
         }
-        public void Select(string sqlCommand)
-        {
-            var command = new SqlCommand(sqlCommand, connection);
-            command.ExecuteNonQuery();
-        }
         public bool IsAccountValid(string username, string password)
         {
             SqlConnection securityConnection = new SqlConnection();
@@ -162,5 +157,18 @@ namespace AllTours
             return true;
         }
 
+        public void AddInfoIntoDatabase (Order order)
+        {
+            Insert($"INSERT INTO Clients VALUES ({Counter.id}, N'{order.client.name}', '{order.client.phone}', '{order.client.email}');");
+            Insert($"INSERT INTO Tickets VALUES ({Counter.id}, '{order.ticket.id}', N'{order.ticket.ticketType}');");
+            Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{order.orderTime}', N'{order.tour.name}', 1, 1);");
+        }
+
+        public void ClearAllInfo()
+        {
+            var command = new SqlCommand("TRUNCATE TABLE Orders; DELETE FROM Clients; DELETE FROM Tickets;", connection);
+            command.ExecuteNonQuery();
+            MessageBox.Show("Successful", "Базы данных были очищены.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

@@ -74,5 +74,11 @@ namespace AllTours
             //db.Insert($"INSERT INTO Clients VALUES ({Counter.id}, N'Абобий', '+79999999999', 'asd@asd.com');");
         }
 
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            db.Connect();
+            db.ClearAllInfo();
+            db.Close();
+        }
     }
 }
