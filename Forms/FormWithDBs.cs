@@ -17,17 +17,14 @@ namespace AllTours.Forms
             InitializeComponent();
         }
 
-        private void ClientsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.clientsBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.megaDatabaseDataSet);
-
-        }
-
         private void FormWithDBs_Load(object sender, EventArgs e)
         {
-            this.tableAdapterManager.UpdateAll(this.megaDatabaseDataSet);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "megaDatabaseDataSet.Tickets". При необходимости она может быть перемещена или удалена.
+            this.ticketsTableAdapter.Fill(this.megaDatabaseDataSet.Tickets);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "megaDatabaseDataSet.Clients". При необходимости она может быть перемещена или удалена.
+            this.clientsTableAdapter.Fill(this.megaDatabaseDataSet.Clients);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "megaDatabaseDataSet.Orders". При необходимости она может быть перемещена или удалена.
+            this.ordersTableAdapter.Fill(this.megaDatabaseDataSet.Orders);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "megaDatabaseDataSet.Tickets". При необходимости она может быть перемещена или удалена.
             this.ticketsTableAdapter.Fill(this.megaDatabaseDataSet.Tickets);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "megaDatabaseDataSet.Orders". При необходимости она может быть перемещена или удалена.
@@ -51,6 +48,14 @@ namespace AllTours.Forms
         private void Button1_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void OrdersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.ordersBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.megaDatabaseDataSet);
+
         }
     }
 }

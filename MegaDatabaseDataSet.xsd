@@ -151,8 +151,18 @@ SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid FROM Orders WH
               <Mapping SourceColumn="Tour" DataSetColumn="Tour" />
               <Mapping SourceColumn="Price" DataSetColumn="Price" />
               <Mapping SourceColumn="IsOrderPaid" DataSetColumn="IsOrderPaid" />
+              <Mapping SourceColumn="Details" DataSetColumn="Details" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="MegaDatabaseConnectionString (Settings)" DbObjectName="dbo.Orders" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid, Details FROM dbo.Orders</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TicketsTableAdapter" GeneratorDataComponentClassName="TicketsTableAdapter" Name="Tickets" UserDataComponentName="TicketsTableAdapter">
             <MainSource>
@@ -219,7 +229,7 @@ SELECT Id, UniqueID, Type FROM Tickets WHERE (Id = @Id)</CommandText>
   <xs:element name="MegaDatabaseDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="MegaDatabaseDataSet" msprop:Generator_UserDSName="MegaDatabaseDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Clients" msprop:Generator_TableClassName="ClientsDataTable" msprop:Generator_TableVarName="tableClients" msprop:Generator_TablePropName="Clients" msprop:Generator_RowDeletingName="ClientsRowDeleting" msprop:Generator_RowChangingName="ClientsRowChanging" msprop:Generator_RowEvHandlerName="ClientsRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientsRowDeleted" msprop:Generator_UserTableName="Clients" msprop:Generator_RowChangedName="ClientsRowChanged" msprop:Generator_RowEvArgName="ClientsRowChangeEvent" msprop:Generator_RowClassName="ClientsRow">
+        <xs:element name="Clients" msprop:Generator_TableClassName="ClientsDataTable" msprop:Generator_TableVarName="tableClients" msprop:Generator_RowChangedName="ClientsRowChanged" msprop:Generator_TablePropName="Clients" msprop:Generator_RowDeletingName="ClientsRowDeleting" msprop:Generator_RowChangingName="ClientsRowChanging" msprop:Generator_RowEvHandlerName="ClientsRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientsRowDeleted" msprop:Generator_RowClassName="ClientsRow" msprop:Generator_UserTableName="Clients" msprop:Generator_RowEvArgName="ClientsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -247,7 +257,7 @@ SELECT Id, UniqueID, Type FROM Tickets WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Orders" msprop:Generator_TableClassName="OrdersDataTable" msprop:Generator_TableVarName="tableOrders" msprop:Generator_TablePropName="Orders" msprop:Generator_RowDeletingName="OrdersRowDeleting" msprop:Generator_RowChangingName="OrdersRowChanging" msprop:Generator_RowEvHandlerName="OrdersRowChangeEventHandler" msprop:Generator_RowDeletedName="OrdersRowDeleted" msprop:Generator_UserTableName="Orders" msprop:Generator_RowChangedName="OrdersRowChanged" msprop:Generator_RowEvArgName="OrdersRowChangeEvent" msprop:Generator_RowClassName="OrdersRow">
+        <xs:element name="Orders" msprop:Generator_TableClassName="OrdersDataTable" msprop:Generator_TableVarName="tableOrders" msprop:Generator_RowChangedName="OrdersRowChanged" msprop:Generator_TablePropName="Orders" msprop:Generator_RowDeletingName="OrdersRowDeleting" msprop:Generator_RowChangingName="OrdersRowChanging" msprop:Generator_RowEvHandlerName="OrdersRowChangeEventHandler" msprop:Generator_RowDeletedName="OrdersRowDeleted" msprop:Generator_RowClassName="OrdersRow" msprop:Generator_UserTableName="Orders" msprop:Generator_RowEvArgName="OrdersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -263,10 +273,11 @@ SELECT Id, UniqueID, Type FROM Tickets WHERE (Id = @Id)</CommandText>
               </xs:element>
               <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:int" minOccurs="0" />
               <xs:element name="IsOrderPaid" msprop:Generator_ColumnVarNameInTable="columnIsOrderPaid" msprop:Generator_ColumnPropNameInRow="IsOrderPaid" msprop:Generator_ColumnPropNameInTable="IsOrderPaidColumn" msprop:Generator_UserColumnName="IsOrderPaid" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Details" msprop:Generator_ColumnVarNameInTable="columnDetails" msprop:Generator_ColumnPropNameInRow="Details" msprop:Generator_ColumnPropNameInTable="DetailsColumn" msprop:Generator_UserColumnName="Details" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Tickets" msprop:Generator_TableClassName="TicketsDataTable" msprop:Generator_TableVarName="tableTickets" msprop:Generator_TablePropName="Tickets" msprop:Generator_RowDeletingName="TicketsRowDeleting" msprop:Generator_RowChangingName="TicketsRowChanging" msprop:Generator_RowEvHandlerName="TicketsRowChangeEventHandler" msprop:Generator_RowDeletedName="TicketsRowDeleted" msprop:Generator_UserTableName="Tickets" msprop:Generator_RowChangedName="TicketsRowChanged" msprop:Generator_RowEvArgName="TicketsRowChangeEvent" msprop:Generator_RowClassName="TicketsRow">
+        <xs:element name="Tickets" msprop:Generator_TableClassName="TicketsDataTable" msprop:Generator_TableVarName="tableTickets" msprop:Generator_RowChangedName="TicketsRowChanged" msprop:Generator_TablePropName="Tickets" msprop:Generator_RowDeletingName="TicketsRowDeleting" msprop:Generator_RowChangingName="TicketsRowChanging" msprop:Generator_RowEvHandlerName="TicketsRowChangeEventHandler" msprop:Generator_RowDeletedName="TicketsRowDeleted" msprop:Generator_RowClassName="TicketsRow" msprop:Generator_UserTableName="Tickets" msprop:Generator_RowEvArgName="TicketsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -304,8 +315,8 @@ SELECT Id, UniqueID, Type FROM Tickets WHERE (Id = @Id)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Orders_ToTable" msdata:parent="Clients" msdata:child="Orders" msdata:parentkey="Id" msdata:childkey="ClientID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="FK_Orders_ToTable" msprop:Generator_ParentPropName="ClientsRow" msprop:Generator_RelationVarName="relationFK_Orders_ToTable" msprop:Generator_UserParentTable="Clients" />
-      <msdata:Relationship name="FK_Orders_ToTable_1" msdata:parent="Tickets" msdata:child="Orders" msdata:parentkey="Id" msdata:childkey="TicketID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="FK_Orders_ToTable_1" msprop:Generator_RelationVarName="relationFK_Orders_ToTable_1" msprop:Generator_UserParentTable="Tickets" msprop:Generator_ParentPropName="TicketsRow" />
+      <msdata:Relationship name="FK_Orders_ToTable" msdata:parent="Clients" msdata:child="Orders" msdata:parentkey="Id" msdata:childkey="ClientID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="FK_Orders_ToTable" msprop:Generator_RelationVarName="relationFK_Orders_ToTable" msprop:Generator_UserParentTable="Clients" msprop:Generator_ParentPropName="ClientsRow" />
+      <msdata:Relationship name="FK_Orders_ToTable_1" msdata:parent="Tickets" msdata:child="Orders" msdata:parentkey="Id" msdata:childkey="TicketID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="FK_Orders_ToTable_1" msprop:Generator_ParentPropName="TicketsRow" msprop:Generator_RelationVarName="relationFK_Orders_ToTable_1" msprop:Generator_UserParentTable="Tickets" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

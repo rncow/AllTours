@@ -680,6 +680,8 @@ namespace AllTours {
             
             private global::System.Data.DataColumn columnIsOrderPaid;
             
+            private global::System.Data.DataColumn columnDetails;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public OrdersDataTable() {
@@ -771,6 +773,14 @@ namespace AllTours {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DetailsColumn {
+                get {
+                    return this.columnDetails;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -806,7 +816,7 @@ namespace AllTours {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public OrdersRow AddOrdersRow(int Id, ClientsRow parentClientsRowByFK_Orders_ToTable, TicketsRow parentTicketsRowByFK_Orders_ToTable_1, System.DateTime DateTime, string Tour, int Price, bool IsOrderPaid) {
+            public OrdersRow AddOrdersRow(int Id, ClientsRow parentClientsRowByFK_Orders_ToTable, TicketsRow parentTicketsRowByFK_Orders_ToTable_1, System.DateTime DateTime, string Tour, int Price, bool IsOrderPaid, string Details) {
                 OrdersRow rowOrdersRow = ((OrdersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -815,7 +825,8 @@ namespace AllTours {
                         DateTime,
                         Tour,
                         Price,
-                        IsOrderPaid};
+                        IsOrderPaid,
+                        Details};
                 if ((parentClientsRowByFK_Orders_ToTable != null)) {
                     columnValuesArray[1] = parentClientsRowByFK_Orders_ToTable[0];
                 }
@@ -858,6 +869,7 @@ namespace AllTours {
                 this.columnTour = base.Columns["Tour"];
                 this.columnPrice = base.Columns["Price"];
                 this.columnIsOrderPaid = base.Columns["IsOrderPaid"];
+                this.columnDetails = base.Columns["Details"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -877,6 +889,8 @@ namespace AllTours {
                 base.Columns.Add(this.columnPrice);
                 this.columnIsOrderPaid = new global::System.Data.DataColumn("IsOrderPaid", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsOrderPaid);
+                this.columnDetails = new global::System.Data.DataColumn("Details", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDetails);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -1536,6 +1550,22 @@ namespace AllTours {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Details {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrders.DetailsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Details\' в таблице \'Orders\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrders.DetailsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ClientsRow ClientsRow {
                 get {
                     return ((ClientsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Orders_ToTable"])));
@@ -1614,6 +1644,18 @@ namespace AllTours {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetIsOrderPaidNull() {
                 this[this.tableOrders.IsOrderPaidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDetailsNull() {
+                return this.IsNull(this.tableOrders.DetailsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDetailsNull() {
+                this[this.tableOrders.DetailsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2338,6 +2380,7 @@ SELECT Id, Name, Phone, Email FROM Clients WHERE (Id = @Id)";
             tableMapping.ColumnMappings.Add("Tour", "Tour");
             tableMapping.ColumnMappings.Add("Price", "Price");
             tableMapping.ColumnMappings.Add("IsOrderPaid", "IsOrderPaid");
+            tableMapping.ColumnMappings.Add("Details", "Details");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -2403,12 +2446,17 @@ SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid FROM Orders WH
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid FROM dbo.Orders" +
                 "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid, Details FROM d" +
+                "bo.Orders";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2430,6 +2478,30 @@ SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid FROM Orders WH
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual MegaDatabaseDataSet.OrdersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            MegaDatabaseDataSet.OrdersDataTable dataTable = new MegaDatabaseDataSet.OrdersDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(MegaDatabaseDataSet.OrdersDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MegaDatabaseDataSet.OrdersDataTable GetDataBy() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             MegaDatabaseDataSet.OrdersDataTable dataTable = new MegaDatabaseDataSet.OrdersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

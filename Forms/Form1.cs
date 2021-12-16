@@ -19,39 +19,9 @@ namespace AllTours
         public Form1()
         {
             InitializeComponent();
+
         }
-       
 
-        //public void AddLabel (Order order, int i)
-        //{ 
-        //    Label label = new Label();
-        //    label.Left = 10;
-        //    label.Top = 10 + 50 * i;
-        //    label.Name = "lbl" + i;
-        //    label.Text = "Клиент " + order.client.name + "\n" + order.client.phone + "\n" + order.client.email;
-        //    label.AutoSize = true;
-        //    Controls.Add(label);
-        //    label.Refresh();
-
-        //    Label label2 = new Label();
-        //    label2.Left = 180;
-        //    label2.Top = 10 + 50 * i;
-        //    label2.Name = "lbl2." + i;
-        //    if (order.isOrderPaid) label2.Text = "Дата и время заказа: " + order.orderTime + "\nВыбранный тур: " + order.tour.name + "\nСтатус: оплачен";
-        //    else label2.Text = "Дата и время заказа: " + order.orderTime + "\nВыбранный тур: " + order.tour.name + "\nСтатус: не оплачен";
-        //    label2.AutoSize = true;
-        //    Controls.Add(label2);
-        //    label2.Refresh();
-
-        //    Label label3 = new Label();
-        //    label3.Left = 420;
-        //    label3.Top = 10 + 50 * i;
-        //    label3.Name = "lbl3." + i;
-        //    label3.Text = "ID билета: " + order.client.ticket.id + "\nТип билета: " + order.client.ticket.ticketType.ToString();
-        //    label3.AutoSize = true;
-        //    Controls.Add(label3);
-        //    label3.Refresh();
-        //}
         DBConnector db = new DBConnector();
         Simulation generation;
         
@@ -69,12 +39,26 @@ namespace AllTours
         {
             Counter.id = int.Parse(Settings.Default["ID"].ToString());
             generation = new Simulation();
-            generation.label = label1;
-            label1.Text = "" + Counter.id;
-            //db.Connect();
-            //db.Insert($"INSERT INTO Clients VALUES ({Counter.id}, N'Абобий', '+79999999999', 'asd@asd.com');");
+
+            //заполнение выпадающего списка c турами
+            for (int i = 0; i < ListTours.listTours.Count; i++)
+            {
+                comboBox1.Items.Add(ListTours.listTours[i].name);
+            }
+            //заполнение выпадающего списка c типами билетов
+            for (int i = 0; i < Enum.GetNames(typeof(TicketType)).Length; i++)
+            {
+                comboBox2.Items.Add((TicketType)i);
+            }
+
+            //выпадающие списки теперь ReadOnly
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            //начальное отображение времени при загрузки
+            label3.Text = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
         }
 
+        //очистка БД
         private void Button3_Click(object sender, EventArgs e)
         {
             db.Connect();
@@ -82,10 +66,61 @@ namespace AllTours
             db.Close();
         }
 
+        //открытие формы с таблицами БД
         private void Button4_Click(object sender, EventArgs e)
         {
             FormWithDBs form = new FormWithDBs();
             form.ShowDialog();
+        }
+
+        //обновление показа времени
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            label3.Text = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
+        }
+
+        public void ButtonEnableCheck ()
+        {
+            if (textBoxName.Text == "" || textBoxPhone.Text == "" || textBoxEmail.Text == "" ||
+                textBoxOrderPrice.Text == "" || selectedTicket == null || selectedTour == null ||
+                !checkBoxIsOrderPaid.Checked)
+                buttonAddOrder.Enabled = false;
+            else
+                buttonAddOrder.Enabled = true;
+        }
+
+        private void TextBoxName_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnableCheck();
+        }
+        private void TextBoxPhone_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnableCheck();
+        }
+        private void TextBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnableCheck();
+        }
+        private void TextBoxOrderPrice_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnableCheck();
+        }
+        public string selectedTour;
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedTicket = comboBox1.SelectedItem.ToString();
+            ButtonEnableCheck();
+        }
+        public string selectedTicket;
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedTour = comboBox2.SelectedItem.ToString();
+            ButtonEnableCheck();
+        }
+
+        private void CheckBoxIsOrderPaid_CheckedChanged(object sender, EventArgs e)
+        {
+            ButtonEnableCheck();
         }
     }
 }

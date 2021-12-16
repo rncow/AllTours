@@ -36,12 +36,17 @@ namespace AllTours
         {
             Random rnd = new Random();
             int temp = rnd.Next(0, ListTours.listTours.Count);
+            int temp2 = rnd.Next(0, 4000);
             Order order = new Order()
             {
                 orderTime = DateTime.Now,
                 client = client,
-                tour = ListTours.listTours[temp]
+                tour = ListTours.listTours[temp],
             };
+            order.price = order.tour.cost + temp2;
+            if (order.tour is BusinessTour) { 
+                ((BusinessTour)order.tour).organization = "organizationName";
+            }
             return order;
         }
     }

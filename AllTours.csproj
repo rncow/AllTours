@@ -85,6 +85,9 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Program.cs" />
+    <Compile Include="MegaDatabaseDataSet.cs">
+      <DependentUpon>MegaDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MegaDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

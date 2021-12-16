@@ -10,10 +10,8 @@ namespace AllTours {
         {
             public string name;
             public string details;
-            public string countries;
-            
+
             public int cost;
-        public int totalCost;
         }
 
     public class BusinessTour : Tour
@@ -23,7 +21,7 @@ namespace AllTours {
 
     public class WorldTour : Tour
     {
-        public new List<string> countries = new List<string>();
+        public List<string> countries = new List<string>();
     }
 
     public class ExclusiveTour : Tour

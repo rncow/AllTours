@@ -6,15 +6,29 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace AllTours
 {
     class DBConnector
     {
         SqlConnection connection;
+        public DBConnector()
+        {
+#if DEBUG
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.FullName;
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
+#endif
+#if !DEBUG
+            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string path = (System.IO.Path.GetDirectoryName(executable));
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
+#endif
+        }
         public void Connect()
         {
-            connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Desktop\\ИСПРО\\AllTours\\DBs\\MegaDatabase.mdf;Integrated Security=True");
+            connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DBs\\MegaDatabase.mdf;Integrated Security=True");
             connection.Open();
             //var commannd = new SqlCommand("INSERT INTO Clients (Name) VALUES ('Sam');", connection);
             //commannd.ExecuteNonQuery();
@@ -162,7 +176,11 @@ namespace AllTours
             Insert($"INSERT INTO Clients VALUES ({Counter.id}, N'{order.client.name}', '{order.client.phone}', '{order.client.email}');");
             Insert($"INSERT INTO Tickets VALUES ({Counter.id}, '{order.ticket.id}', N'{order.ticket.ticketType}');");
             string sqlFormattedDate = order.orderTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{sqlFormattedDate}', N'{order.tour.name}', 1, 1);");
+            if (order.tour is BusinessTour)
+                Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{sqlFormattedDate}', N'{order.tour.name}', {order.price}, 1, N'От организации {((BusinessTour)order.tour).organization}');");
+            else
+                Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{sqlFormattedDate}', N'{order.tour.name}', {order.price}, 1, '');");
+
 
         }
 
@@ -170,7 +188,7 @@ namespace AllTours
         {
             var command = new SqlCommand("TRUNCATE TABLE Orders; DELETE FROM Clients; DELETE FROM Tickets;", connection);
             command.ExecuteNonQuery();
-            MessageBox.Show("Successful", "Базы данных были очищены.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Базы данных были очищены.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
