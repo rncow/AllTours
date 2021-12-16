@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AllTours.Forms;
 using AllTours.Properties;
 
 namespace AllTours
@@ -79,6 +80,12 @@ namespace AllTours
             db.Connect();
             db.ClearAllInfo();
             db.Close();
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            FormWithDBs form = new FormWithDBs();
+            form.ShowDialog();
         }
     }
 }

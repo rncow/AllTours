@@ -161,7 +161,9 @@ namespace AllTours
         {
             Insert($"INSERT INTO Clients VALUES ({Counter.id}, N'{order.client.name}', '{order.client.phone}', '{order.client.email}');");
             Insert($"INSERT INTO Tickets VALUES ({Counter.id}, '{order.ticket.id}', N'{order.ticket.ticketType}');");
-            Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{order.orderTime}', N'{order.tour.name}', 1, 1);");
+            string sqlFormattedDate = order.orderTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{sqlFormattedDate}', N'{order.tour.name}', 1, 1);");
+
         }
 
         public void ClearAllInfo()

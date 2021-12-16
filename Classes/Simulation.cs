@@ -54,14 +54,17 @@ namespace AllTours
                 if (tempOrder.isOrderPaid) tempOrder.ticket = Generator.GenerateTicket();
 
                 db.AddInfoIntoDatabase(tempOrder);
-                label.Invoke(new Action(() => label.Text = "temptest" + i));
-                i++;
-                Counter.id++;
-
-                Thread.Sleep(1000);
                 //сохранение значения счётчика
+                Counter.id++;
                 Settings.Default["ID"] = Counter.id;
                 Settings.Default.Save();
+                
+
+                label.Invoke(new Action(() => label.Text = "temptest" + i));
+                i++;
+                
+
+                Thread.Sleep(1000);
             }
         }
 
