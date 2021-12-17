@@ -67,7 +67,10 @@ namespace AllTours
                 Thread.Sleep(1000);
             }
         }
+        public void CreateOdrderFromForm()
+        {
 
+        }
     }
 
 }

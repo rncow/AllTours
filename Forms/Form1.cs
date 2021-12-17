@@ -40,11 +40,6 @@ namespace AllTours
             Counter.id = int.Parse(Settings.Default["ID"].ToString());
             generation = new Simulation();
 
-            //заполнение выпадающего списка c турами
-            for (int i = 0; i < ListTours.listTours.Count; i++)
-            {
-                comboBox1.Items.Add(ListTours.listTours[i].name);
-            }
             //заполнение выпадающего списка c типами билетов
             for (int i = 0; i < Enum.GetNames(typeof(TicketType)).Length; i++)
             {
@@ -54,8 +49,10 @@ namespace AllTours
             //выпадающие списки теперь ReadOnly
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             //начальное отображение времени при загрузки
             label3.Text = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
+            
         }
 
         //очистка БД
@@ -79,6 +76,7 @@ namespace AllTours
             label3.Text = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
         }
 
+        //проверка на доступность кнопки. Кнопка будет доступна только тогда, когда все необходимые поля будут заполнены
         public void ButtonEnableCheck ()
         {
             if (textBoxName.Text == "" || textBoxPhone.Text == "" || textBoxEmail.Text == "" ||
@@ -121,6 +119,64 @@ namespace AllTours
         private void CheckBoxIsOrderPaid_CheckedChanged(object sender, EventArgs e)
         {
             ButtonEnableCheck();
+        }
+        //конец отслеживаемых полей
+
+        //создать и добавить заказ в бд
+        private void ButtonAddOrder_Click(object sender, EventArgs e)
+        {
+            //AddOrderFromForm();
+            
+        }
+
+        //отслеживание выбора типа тура
+        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedTourType = "";
+            if (comboBox3.SelectedItem.ToString() != "Classic")
+            {
+                selectedTourType = comboBox3.SelectedItem.ToString();
+            }   
+            FillComboBoxWithTours(selectedTourType);
+            ShowTextBox(selectedTourType);
+        }
+
+        //заполнение combobox'а в зависимости от выбранного типа тура
+        public void FillComboBoxWithTours(string selectedTourType)
+        {
+            if (!comboBox1.Enabled) comboBox1.Enabled = true;
+            comboBox1.Items.Clear();
+            for (int i = 0; i < ListTours.listTours.Count; i++)
+            {
+                if ($"AllTours.{selectedTourType}Tour" == ListTours.listTours[i].GetType().ToString())
+                comboBox1.Items.Add(ListTours.listTours[i].name);
+            }
+        }
+        //отображение скрытых полей (для туров business и exclusive)
+        public void ShowTextBox(string selectedTourType)
+        {
+            //задание значения false для того чтобы после перевыбора типа тура поля не оставались видимыми
+            if (textBoxOrganization.Visible)
+            {
+                textBoxOrganization.Visible = false;
+                textBoxOrganization.Text = "";
+                labelOrganization.Visible = false;
+            }
+            if (textBoxExclusive.Visible)
+            {
+                textBoxExclusive.Visible = false;
+                textBoxExclusive.Text = "";
+                labelExclusive.Visible = false;
+            }
+            //определение, какое поле будет отображаться
+            if (selectedTourType == "Business") {
+                textBoxOrganization.Visible = true;
+                labelOrganization.Visible = true;
+            }
+            if (selectedTourType == "Exclusive") {
+                textBoxExclusive.Visible = true;
+                labelExclusive.Visible = true;
+            }
         }
     }
 }

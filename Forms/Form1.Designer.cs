@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,6 +50,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.checkBoxIsOrderPaid = new System.Windows.Forms.CheckBox();
+            this.labeltest = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.labelOrganization = new System.Windows.Forms.Label();
+            this.textBoxOrganization = new System.Windows.Forms.TextBox();
+            this.labelExclusive = new System.Windows.Forms.Label();
+            this.textBoxExclusive = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -74,15 +80,6 @@
             this.button2.Text = "Остановить генерацию";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(629, 187);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
             // 
             // button3
             // 
@@ -157,8 +154,9 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(17, 162);
+            this.comboBox1.Location = new System.Drawing.Point(167, 162);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 11;
@@ -166,7 +164,7 @@
             // 
             // textBoxOrderPrice
             // 
-            this.textBoxOrderPrice.Location = new System.Drawing.Point(219, 163);
+            this.textBoxOrderPrice.Location = new System.Drawing.Point(318, 164);
             this.textBoxOrderPrice.Name = "textBoxOrderPrice";
             this.textBoxOrderPrice.Size = new System.Drawing.Size(100, 20);
             this.textBoxOrderPrice.TabIndex = 12;
@@ -185,12 +183,13 @@
             // 
             this.buttonAddOrder.BackColor = System.Drawing.SystemColors.Control;
             this.buttonAddOrder.Enabled = false;
-            this.buttonAddOrder.Location = new System.Drawing.Point(318, 228);
+            this.buttonAddOrder.Location = new System.Drawing.Point(17, 288);
             this.buttonAddOrder.Name = "buttonAddOrder";
             this.buttonAddOrder.Size = new System.Drawing.Size(122, 34);
             this.buttonAddOrder.TabIndex = 14;
             this.buttonAddOrder.Text = "Создать заказ";
             this.buttonAddOrder.UseVisualStyleBackColor = false;
+            this.buttonAddOrder.Click += new System.EventHandler(this.ButtonAddOrder_Click);
             // 
             // label4
             // 
@@ -222,7 +221,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 146);
+            this.label7.Location = new System.Drawing.Point(164, 146);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(25, 13);
             this.label7.TabIndex = 18;
@@ -231,7 +230,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(216, 146);
+            this.label8.Location = new System.Drawing.Point(326, 146);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 19;
@@ -250,7 +249,7 @@
             // 
             this.checkBoxIsOrderPaid.AutoSize = true;
             this.checkBoxIsOrderPaid.ForeColor = System.Drawing.Color.Red;
-            this.checkBoxIsOrderPaid.Location = new System.Drawing.Point(374, 165);
+            this.checkBoxIsOrderPaid.Location = new System.Drawing.Point(463, 164);
             this.checkBoxIsOrderPaid.Name = "checkBoxIsOrderPaid";
             this.checkBoxIsOrderPaid.Size = new System.Drawing.Size(107, 17);
             this.checkBoxIsOrderPaid.TabIndex = 21;
@@ -258,11 +257,88 @@
             this.checkBoxIsOrderPaid.UseVisualStyleBackColor = true;
             this.checkBoxIsOrderPaid.CheckedChanged += new System.EventHandler(this.CheckBoxIsOrderPaid_CheckedChanged);
             // 
+            // labeltest
+            // 
+            this.labeltest.AutoSize = true;
+            this.labeltest.Location = new System.Drawing.Point(611, 225);
+            this.labeltest.Name = "labeltest";
+            this.labeltest.Size = new System.Drawing.Size(46, 13);
+            this.labeltest.TabIndex = 22;
+            this.labeltest.Text = "labeltest";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Тип тура";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Classic",
+            "Business",
+            "World",
+            "Exclusive"});
+            this.comboBox3.Location = new System.Drawing.Point(17, 162);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.TabIndex = 23;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.ComboBox3_SelectedIndexChanged);
+            // 
+            // labelOrganization
+            // 
+            this.labelOrganization.AutoSize = true;
+            this.labelOrganization.Location = new System.Drawing.Point(164, 189);
+            this.labelOrganization.Name = "labelOrganization";
+            this.labelOrganization.Size = new System.Drawing.Size(74, 13);
+            this.labelOrganization.TabIndex = 26;
+            this.labelOrganization.Text = "Организация";
+            this.labelOrganization.Visible = false;
+            // 
+            // textBoxOrganization
+            // 
+            this.textBoxOrganization.Location = new System.Drawing.Point(167, 205);
+            this.textBoxOrganization.Name = "textBoxOrganization";
+            this.textBoxOrganization.Size = new System.Drawing.Size(251, 20);
+            this.textBoxOrganization.TabIndex = 25;
+            this.textBoxOrganization.Visible = false;
+            // 
+            // labelExclusive
+            // 
+            this.labelExclusive.AutoSize = true;
+            this.labelExclusive.Location = new System.Drawing.Point(164, 189);
+            this.labelExclusive.Name = "labelExclusive";
+            this.labelExclusive.Size = new System.Drawing.Size(109, 13);
+            this.labelExclusive.TabIndex = 28;
+            this.labelExclusive.Text = "Пожелания клиента";
+            this.labelExclusive.Visible = false;
+            // 
+            // textBoxExclusive
+            // 
+            this.textBoxExclusive.Location = new System.Drawing.Point(167, 205);
+            this.textBoxExclusive.Multiline = true;
+            this.textBoxExclusive.Name = "textBoxExclusive";
+            this.textBoxExclusive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxExclusive.Size = new System.Drawing.Size(251, 57);
+            this.textBoxExclusive.TabIndex = 27;
+            this.textBoxExclusive.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelExclusive);
+            this.Controls.Add(this.textBoxExclusive);
+            this.Controls.Add(this.labelOrganization);
+            this.Controls.Add(this.textBoxOrganization);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.labeltest);
             this.Controls.Add(this.checkBoxIsOrderPaid);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -281,7 +357,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -295,7 +370,6 @@
         #endregion
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
@@ -315,6 +389,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox checkBoxIsOrderPaid;
+        private System.Windows.Forms.Label labeltest;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label labelOrganization;
+        private System.Windows.Forms.TextBox textBoxOrganization;
+        private System.Windows.Forms.Label labelExclusive;
+        private System.Windows.Forms.TextBox textBoxExclusive;
     }
 }
 
