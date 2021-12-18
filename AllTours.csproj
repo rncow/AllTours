@@ -64,6 +64,7 @@
     <Compile Include="Classes\DBConnector.cs" />
     <Compile Include="Classes\Classes.cs" />
     <Compile Include="Classes\enums.cs" />
+    <Compile Include="Classes\SimProperties.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +86,12 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Program.cs" />
+    <Compile Include="Forms\SimulationProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SimulationProperties.Designer.cs">
+      <DependentUpon>SimulationProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="MegaDatabaseDataSet.cs">
       <DependentUpon>MegaDatabaseDataSet.xsd</DependentUpon>
     </Compile>
@@ -105,6 +112,9 @@
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SimulationProperties.resx">
+      <DependentUpon>SimulationProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -113,6 +123,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="MegaDatabaseDataSet.xsc">
       <DependentUpon>MegaDatabaseDataSet.xsd</DependentUpon>
@@ -153,6 +164,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>UserDatabase.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\240px-Windows_Settings_app_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

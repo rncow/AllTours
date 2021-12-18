@@ -178,5 +178,11 @@ namespace AllTours
                 labelExclusive.Visible = true;
             }
         }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            SimulationProperties form = new SimulationProperties();
+            form.ShowDialog();
+        }
     }
 }

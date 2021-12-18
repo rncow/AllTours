@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using AllTours.Properties;
+using AllTours.Classes;
 
 namespace AllTours
 {
@@ -64,7 +65,7 @@ namespace AllTours
                 i++;
                 
 
-                Thread.Sleep(1000);
+                Thread.Sleep(SimProperties.generationSpeed);
             }
         }
         public void CreateOdrderFromForm()

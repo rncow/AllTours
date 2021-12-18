@@ -57,6 +57,7 @@
             this.textBoxOrganization = new System.Windows.Forms.TextBox();
             this.labelExclusive = new System.Windows.Forms.Label();
             this.textBoxExclusive = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -327,11 +328,23 @@
             this.textBoxExclusive.TabIndex = 27;
             this.textBoxExclusive.Visible = false;
             // 
+            // button5
+            // 
+            this.button5.BackgroundImage = global::AllTours.Properties.Resources._240px_Windows_Settings_app_icon;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Location = new System.Drawing.Point(760, 31);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(34, 34);
+            this.button5.TabIndex = 29;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.labelExclusive);
             this.Controls.Add(this.textBoxExclusive);
             this.Controls.Add(this.labelOrganization);
@@ -396,6 +409,7 @@
         private System.Windows.Forms.TextBox textBoxOrganization;
         private System.Windows.Forms.Label labelExclusive;
         private System.Windows.Forms.TextBox textBoxExclusive;
+        private System.Windows.Forms.Button button5;
     }
 }
 
