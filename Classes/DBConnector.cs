@@ -178,10 +178,10 @@ namespace AllTours
             string sqlFormattedDate = order.orderTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
             if (order.tour is BusinessTour)
                 Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{sqlFormattedDate}', N'{order.tour.name}', {order.price}, 1, N'От организации {((BusinessTour)order.tour).organization}');");
+            else if (order.tour is ExclusiveTour)
+                Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{sqlFormattedDate}', N'{order.tour.name}', {order.price}, 1, N'Прим. клиента: {((ExclusiveTour)order.tour).exclusiveDetails}');");
             else
                 Insert($"INSERT INTO Orders VALUES ({Counter.id}, {Counter.id}, {Counter.id}, '{sqlFormattedDate}', N'{order.tour.name}', {order.price}, 1, '');");
-
-
         }
 
         public void ClearAllInfo()

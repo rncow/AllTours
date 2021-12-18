@@ -50,7 +50,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.checkBoxIsOrderPaid = new System.Windows.Forms.CheckBox();
-            this.labeltest = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.labelOrganization = new System.Windows.Forms.Label();
@@ -258,14 +258,14 @@
             this.checkBoxIsOrderPaid.UseVisualStyleBackColor = true;
             this.checkBoxIsOrderPaid.CheckedChanged += new System.EventHandler(this.CheckBoxIsOrderPaid_CheckedChanged);
             // 
-            // labeltest
+            // label
             // 
-            this.labeltest.AutoSize = true;
-            this.labeltest.Location = new System.Drawing.Point(611, 225);
-            this.labeltest.Name = "labeltest";
-            this.labeltest.Size = new System.Drawing.Size(46, 13);
-            this.labeltest.TabIndex = 22;
-            this.labeltest.Text = "labeltest";
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(708, 187);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(46, 13);
+            this.label.TabIndex = 22;
+            this.label.Text = "labeltest";
             // 
             // label1
             // 
@@ -351,7 +351,7 @@
             this.Controls.Add(this.textBoxOrganization);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.labeltest);
+            this.Controls.Add(this.label);
             this.Controls.Add(this.checkBoxIsOrderPaid);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -402,7 +402,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox checkBoxIsOrderPaid;
-        private System.Windows.Forms.Label labeltest;
+        private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label labelOrganization;

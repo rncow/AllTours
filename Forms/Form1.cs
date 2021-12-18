@@ -15,21 +15,22 @@ namespace AllTours
 {
     public partial class Form1 : Form
     {
-
         public Form1()
         {
             InitializeComponent();
-
         }
 
         DBConnector db = new DBConnector();
         Simulation generation;
         
+        //запустить генерацию
         private void Button1_Click(object sender, EventArgs e)
         {
             generation.Start();
+            generation.label = label;
         }
 
+        //остановить генерацию
         private void Button2_Click(object sender, EventArgs e)
         {
             generation.Stop();
@@ -52,7 +53,6 @@ namespace AllTours
             comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             //начальное отображение времени при загрузки
             label3.Text = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
-            
         }
 
         //очистка БД
@@ -86,7 +86,7 @@ namespace AllTours
             else
                 buttonAddOrder.Enabled = true;
         }
-
+        //отслеживание изменений
         private void TextBoxName_TextChanged(object sender, EventArgs e)
         {
             ButtonEnableCheck();
@@ -106,13 +106,13 @@ namespace AllTours
         public string selectedTour;
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedTicket = comboBox1.SelectedItem.ToString();
+            selectedTour = comboBox1.SelectedItem.ToString();
             ButtonEnableCheck();
         }
         public string selectedTicket;
         private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedTour = comboBox2.SelectedItem.ToString();
+            selectedTicket = comboBox2.SelectedItem.ToString();
             ButtonEnableCheck();
         }
 
@@ -125,14 +125,26 @@ namespace AllTours
         //создать и добавить заказ в бд
         private void ButtonAddOrder_Click(object sender, EventArgs e)
         {
-            //AddOrderFromForm();
-            
+            if (selectedTourType == "Business")
+            {
+                generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, textBoxOrganization.Text);
+            }
+            else if (selectedTourType == "Exclusive")
+            {
+                generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, textBoxExclusive.Text);
+            }
+            else
+            {
+                generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, "");
+            }
+            MessageBox.Show("Заказ создан и добавлен в БД", "Succeful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //отслеживание выбора типа тура
+        string selectedTourType;
         private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedTourType = "";
+            selectedTourType = "";
             if (comboBox3.SelectedItem.ToString() != "Classic")
             {
                 selectedTourType = comboBox3.SelectedItem.ToString();
@@ -179,6 +191,7 @@ namespace AllTours
             }
         }
 
+        //открыть окно с настройками генерации
         private void Button5_Click(object sender, EventArgs e)
         {
             SimulationProperties form = new SimulationProperties();
