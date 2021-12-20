@@ -391,6 +391,7 @@
             this.Controls.Add(this.clientsDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormWithDBs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormWithDBs";
             this.Load += new System.EventHandler(this.FormWithDBs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).EndInit();

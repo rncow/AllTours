@@ -118,6 +118,7 @@
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SimulationProperties";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SimulationProperties";
             this.Load += new System.EventHandler(this.SimulationProperties_Load);
             this.ResumeLayout(false);
