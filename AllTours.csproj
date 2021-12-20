@@ -65,6 +65,7 @@
     <Compile Include="Classes\Classes.cs" />
     <Compile Include="Classes\enums.cs" />
     <Compile Include="Classes\SimProperties.cs" />
+    <Compile Include="Classes\DragForm.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

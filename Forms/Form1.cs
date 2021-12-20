@@ -125,19 +125,24 @@ namespace AllTours
         //создать и добавить заказ в бд
         private void ButtonAddOrder_Click(object sender, EventArgs e)
         {
-            if (selectedTourType == "Business")
+            if (int.TryParse(textBoxOrderPrice.Text, out int test))
             {
-                generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, textBoxOrganization.Text);
-            }
-            else if (selectedTourType == "Exclusive")
-            {
-                generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, textBoxExclusive.Text);
+                if (selectedTourType == "Business")
+                {
+                    generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, textBoxOrganization.Text);
+                }
+                else if (selectedTourType == "Exclusive")
+                {
+                    generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, textBoxExclusive.Text);
+                }
+                else
+                {
+                    generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, "");
+                }
+                MessageBox.Show("Заказ создан и добавлен в БД", "Succeful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-            {
-                generation.CreateOrderFromForm(textBoxName.Text, textBoxPhone.Text, textBoxEmail.Text, selectedTour, textBoxOrderPrice.Text, selectedTicket, "");
-            }
-            MessageBox.Show("Заказ создан и добавлен в БД", "Succeful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Некорректный ввод.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         //отслеживание выбора типа тура
@@ -196,6 +201,22 @@ namespace AllTours
         {
             SimulationProperties form = new SimulationProperties();
             form.ShowDialog();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            DragForm.ReleaseCapture();
+            DragForm.PostMessage(this.Handle, DragForm.WM_SYSCOMMAND, DragForm.DOMOVE, 0);
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

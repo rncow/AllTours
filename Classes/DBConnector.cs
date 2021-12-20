@@ -122,7 +122,7 @@ namespace AllTours
 
             string savedPasswordHash = Convert.ToBase64String(hashBytes);
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Desktop\\ИСПРО\\AllTours\\DBs\\UserDatabase.mdf;Integrated Security=True";
+            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DBs\\UserDatabase.mdf;Integrated Security=True";
             conn.Open();
             var command = new SqlCommand($"INSERT INTO Accounts (username, password) VALUES ('{username}', '{savedPasswordHash}');", conn);
             command.ExecuteNonQuery();
@@ -133,7 +133,7 @@ namespace AllTours
             if (username.Length < 1 || password.Length < 1)
                 return false;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Desktop\\ИСПРО\\AllTours\\DBs\\UserDatabase.mdf;Integrated Security=True";
+            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DBs\\UserDatabase.mdf;Integrated Security=True";
             conn.Open();
             var command = new SqlCommand($"Select password FROM Accounts Where username = '{username}'", conn);
             /* Fetch the stored value */

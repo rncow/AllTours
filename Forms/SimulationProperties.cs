@@ -33,5 +33,16 @@ namespace AllTours.Forms
             else
                 MessageBox.Show("Некорректный ввод.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            DragForm.ReleaseCapture();
+            DragForm.PostMessage(this.Handle, DragForm.WM_SYSCOMMAND, DragForm.DOMOVE, 0);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

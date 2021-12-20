@@ -2449,7 +2449,7 @@ SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid FROM Orders WH
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid FROM dbo.Orders" +
+            this._commandCollection[0].CommandText = "SELECT Id, ClientID, TicketID, DateTime, Tour, Price, IsOrderPaid, Details FROM dbo.Orders" +
                 "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
